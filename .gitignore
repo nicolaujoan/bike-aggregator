@@ -12,3 +12,5 @@ coverage
 benchmarks/graphs
 
 .env
+
+notes_orm.txt

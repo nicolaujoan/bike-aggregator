@@ -3,8 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 
+// Routers
 var indexRouter = require('./src/routes/index');
-var usersRouter = require('./src/routes/users');
+var usersRouter = require('./src/routes/bikes');
 
 var app = express();
 
@@ -14,8 +15,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Entrypoint for each router
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/bikes', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

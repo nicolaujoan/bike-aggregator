@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('bike-aggregator:server');
 var http = require('http');
-require('dotenv').config();
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 var db = require('../config/db/sequelize');
 
 /**
@@ -35,8 +35,19 @@ server.on('listening', onListening);
  * Connect to the specified database
  */
 
-db.connect();
+var connectToDB = async function () {
+  let connected = false;
+  while (!connected) {
+    try {
+      await db.connect();
+      connected = true;
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
+}
 
+connectToDB();
 /**
  * Normalize a port into a number, string, or false.
  */

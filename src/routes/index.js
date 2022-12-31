@@ -9,11 +9,13 @@ router.get('/', async function (req, res) {
     const BikeRepository = require('../repositories/bikeRepository');
     const Bike = require('../models/bike');
 
-    const myRepo = new BikesRepository(Bike);
+    const myRepo = new BikeRepository(Bike);
     const bike = await myRepo.findByModel();
     console.log(bike);
+    res.send(bike);
   } catch (e) {
     console.log(e.message);
+    res.send('error bro');
   }
 
 

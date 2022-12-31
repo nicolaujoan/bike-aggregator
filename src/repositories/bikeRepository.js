@@ -16,4 +16,4 @@ BikeRepository.prototype.findByModel = function() {
     return this.model.findByModel();
 }
 
-module.exports = BikesRepository;
+module.exports = BikeRepository;

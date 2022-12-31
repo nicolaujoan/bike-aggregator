@@ -11,6 +11,8 @@ coverage
 # Benchmarking
 benchmarks/graphs
 
+# Environment variables
+.env.*
 .env
 
-notes_orm.txt
+

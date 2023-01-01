@@ -14,3 +14,6 @@ https://millo-l.github.io/Synchronize-docker-compose-nodejs-mysql-execution-orde
 
 - make some data migration/generation
 
+- try to think how to implement a microservices architecture
+
+

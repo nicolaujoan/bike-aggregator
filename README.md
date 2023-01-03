@@ -16,4 +16,13 @@ https://millo-l.github.io/Synchronize-docker-compose-nodejs-mysql-execution-orde
 
 - try to think how to implement a microservices architecture
 
+--- 
+
+About testing resources:
+
+Have used jest and a combination between jest and express
+
+- <a href="https://jestjs.io/docs/getting-started">jest</a>
+- <a href="https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/">jest and supertest</a>
+
 

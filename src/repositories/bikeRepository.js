@@ -12,8 +12,9 @@ BikeRepository.prototype.create = function() {
     this.model.create();  // create a single Bike
 }
 
-BikeRepository.prototype.findByModel = function() {
-    return this.model.findByModel();
+BikeRepository.prototype.findByBrand = function(brand) {
+    const bike =  this.model.findByBrand(brand);
+    return bike;
 }
 
 module.exports = BikeRepository;

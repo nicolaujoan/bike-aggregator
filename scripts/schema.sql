@@ -11,6 +11,7 @@ CREATE TABLE shops (
 CREATE TABLE categories (
   id INT NOT NULL AUTO_INCREMENT,
   name TEXT NOT NULL,
+  type TEXT NOT NULL,
   parent_id INT,
   PRIMARY KEY (id),
   FOREIGN KEY (parent_id) REFERENCES categories (id)

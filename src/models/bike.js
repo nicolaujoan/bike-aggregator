@@ -3,10 +3,10 @@ const { sequelize } = require('../../config/db/sequelize');
 
 class Bike extends Model {
 
-  static async findByModel() {
-    return await this.findOne({ where: { brand: 'specialized' } })
-    .then(data => data.dataValues)
-    .catch(e => console.log(e.message));
+  static async findByBrand(brand) {
+    return await this.findOne({ where: { brand } })
+      .then(data => data ? data.dataValues : null)
+      .catch(e => console.log(e.message));
   }
 
   create() {

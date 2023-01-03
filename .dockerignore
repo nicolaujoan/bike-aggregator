@@ -1,4 +1,4 @@
-test
+__tests__
 Dockerfile
 docker*.yml
 

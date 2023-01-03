@@ -17,4 +17,6 @@ describe('get some bikes by its brand', () => {
         return result
             .then(result => expect(result.brand).toBe('Trek'));
     });
+
+    // some more tests
 })

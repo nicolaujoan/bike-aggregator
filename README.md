@@ -25,4 +25,22 @@ Have used jest and a combination between jest and express
 - <a href="https://jestjs.io/docs/getting-started">jest</a>
 - <a href="https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/">jest and supertest</a>
 
+--- 
+
+Usage of process manager to run npm scripts in detach mode, is useful to name processes and stop them in such an elegant way
+
+pm2
+
+---
+
+TESTING MECHANICS
+
+```bash
+bash db-container.sh
+```
+
+```bash
+npm test
+```
+
 

@@ -5,7 +5,7 @@ test('the connection should return true', () => {
         .then(result => expect(result).toBeTruthy());
 });
 
-// PROMISE WAY
+// PROMISE
 
 /**
  * TWO THINGS TO BE NOTICED HERE:

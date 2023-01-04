@@ -34,3 +34,11 @@ INSERT INTO bikes (msrp, category_id, brand, model, weight, suspension, travel, 
 ('$799.99', 3, 'Cannondale', 'Quick', '26 lbs', 'Hardtail', 'N/A', 'Steel', 'Steel', 'Steel', 'Shimano Acera', 'Shimano Acera', 'Tektro Auriga', 'Steel'),
 ('$2,699.99', 4, 'Specialized', 'Enduro', '31 lbs', 'Full suspension', '160 mm', 'Aluminum', 'Aluminum', 'Aluminum', 'SRAM X01 Eagle', 'SRAM X01 Eagle', 'SRAM Guide RS', 'Aluminum'),
 ('$2,199.99', 5, 'Scott', 'Scale', '29 lbs', 'Hardtail', 'N/A', 'Carbon fiber', 'Carbon fiber', 'Carbon fiber', 'Shimano Dura-Ace', 'Shimano Dura-Ace', 'Shimano Dura-Ace', 'Carbon fiber');
+
+-- Shops
+INSERT INTO shops (name, location, phone_number, hours, services) VALUES
+('John''s Bike Shop', '123 Main Street, Anytown USA', '555-555-5555', 'Monday-Friday: 10:00am-6:00pm, Saturday: 9:00am-5:00pm, Sunday: Closed', 'Bike Sales, Repairs, Tune-ups, Rentals'),
+('Mike''s Bike Shop', '456 Main Street, Anytown USA', '555-555-5556', 'Monday-Friday: 9:00am-5:00pm, Saturday: 10:00am-4:00pm, Sunday: Closed', 'Bike Sales, Repairs, Rentals'),
+('Sue''s Bike Shop', '789 Main Street, Anytown USA', '555-555-5557', 'Monday-Saturday: 10:00am-6:00pm, Sunday: Closed', 'Bike Sales, Repairs, Tune-ups, Rentals'),
+('Chris''s Bike Shop', '321 Main Street, Anytown USA', '555-555-5558', 'Monday-Friday: 9:00am-5:00pm, Saturday: 9:00am-12:00pm, Sunday: Closed', 'Bike Sales, Repairs, Rentals'),
+('Ann''s Bike Shop', '654 Main Street, Anytown USA', '555-555-5559', 'Monday-Saturday: 9:00am-5:00pm, Sunday: Closed', 'Bike Sales, Repairs, Tune-ups, Rentals');

@@ -4,7 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 
 // Routers
-var indexRouter = require('./src/routes/index');
 var bikesRouter = require('./src/routes/bikes');
 
 var app = express();
@@ -15,7 +14,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Entrypoint for each router
-app.use('/', indexRouter);
 app.use('/bikes', bikesRouter);
 
 // catch 404 and forward to error handler

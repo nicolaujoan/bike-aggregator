@@ -1,10 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
-// Controller
-const bikes_controller = require('../controllers/bikeController');
+const controller = require('../controllers/bikeController');
 
-/* GET users listing. */
-router.get('/', bikes_controller.getAllBikes);
+// READ
+router.get('/', controller.getAllBikes);
+
+router.get('/bike', controller.getSingleBike);
+
+router.get('/:brand', controller.getAllBikesByBrand);
+
+router.get('/bike/:brand', controller.getSingleBikeByBrand);
+
+// CREATE
+
+// UPDATE
+
+// DELETE
 
 module.exports = router;

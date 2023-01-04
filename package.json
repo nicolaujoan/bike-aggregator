@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=test nodemon ./bin/www",
     "test-init": "NODE_ENV=test node ./bin/www",
     "pretest": "pm2 start 'npm run test-init'",
-    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "test": "NODE_ENV=test jest --collect-coverage --detectOpenHandles",
     "posttest": "pm2 delete 'npm run test-init'"
   },
   "dependencies": {

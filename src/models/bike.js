@@ -1,4 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
+const Category = require('./category');
 const { sequelize } = require('../../config/db/sequelize');
 
 class Bike extends Model {
@@ -50,6 +51,15 @@ Bike.init({
   msrp: {
     type: DataTypes.TEXT,
     allowNull: false
+  },
+
+  category_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: Category,
+      key: 'id'
+    }
   },
 
   brand: {

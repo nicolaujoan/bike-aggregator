@@ -1,4 +1,3 @@
-const { connect } = require('../../config/db/sequelize');
 const BikeRepository = require('../../src/repositories/bikeRepository');
 const Bike = require('../../src/models/bike');
 
@@ -7,9 +6,7 @@ describe('get some bikes by its brand', () => {
     let Repo;
 
     beforeAll(() => {
-        const isConnected = connect();
         Repo = new BikeRepository(Bike);
-        return isConnected.then(value => value);
     });
 
     test('get all the bikes in our system', () => {

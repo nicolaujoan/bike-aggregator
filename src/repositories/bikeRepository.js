@@ -4,17 +4,28 @@
  * its models, so we have to ensure that the model implements the methods that this repo have
  */
 
-function BikeRepository(model) {   
+// How to decouple from db, using custom methods in our repository and then do the custom ones
+// in the model and do the details of implementation there, so our Repository is agnostic to
+// the model we pass
+
+function BikeRepository(model) {
     this.model = model;
 }
 
-BikeRepository.prototype.create = function() {
-    this.model.create();  // create a single Bike
+BikeRepository.prototype.findAll = function (attributes, filters) {
+    return this.model._findAll(attributes, filters);
+};
+
+BikeRepository.prototype.findOne = function (attributes, filters) {
+    return this.model._findOne(attributes, filters);
 }
 
-BikeRepository.prototype.findByBrand = function(brand) {
-    const bike =  this.model.findByBrand(brand);
-    return bike;
+BikeRepository.prototype.findOneByBrand = function (brand) {
+    return this.model.findOneByBrand(brand);
+}
+
+BikeRepository.prototype.findManyByBrand = function (brand) {
+    return this.model.findManyByBrand(brand);
 }
 
 module.exports = BikeRepository;

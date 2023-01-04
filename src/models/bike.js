@@ -3,18 +3,39 @@ const { sequelize } = require('../../config/db/sequelize');
 
 class Bike extends Model {
 
-  static async findByBrand(brand) {
+  static async _findAll(attributes, filters) {
+    const bikes = await this.findAll({attributes, where: filters});
+    if (bikes) {
+      return bikes.map(bike => bike.dataValues);
+    }
+    return [];
+  }
+
+  static async _findOne(attributes, filters) {
+    const bike = await this.findOne({attributes, where: filters});
+    return bike ? bike.dataValues : null;
+  }
+
+  static async findOneByBrand(brand) {
     return await this.findOne({ where: { brand } })
       .then(data => data ? data.dataValues : null)
       .catch(e => console.log(e.message));
   }
 
-  create() {
-    this.save();
-    console.log('A bike was saved to the database');
+  static async findManyByBrand(brand) {
+    const bikes = await this.findAll({ where: {brand} });
+    if (bikes) {
+      const bikesDTO = bikes.map(bike => bike.dataValues );
+      return bikesDTO;
+    }
+    return [];
   }
 
-  getIdPlusBrand() {
+  create() {
+    this.save();
+  }
+
+  getIdAndBrand() {
     return `id: ${this.id}, brand: ${this.brand}`;
   }
 }

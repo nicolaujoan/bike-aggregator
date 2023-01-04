@@ -31,6 +31,12 @@ Usage of process manager to run npm scripts in detach mode, is useful to name pr
 
 pm2
 
+install it with the following command:
+
+```bash
+npm install pm2 -g
+``` 
+
 ---
 
 TESTING MECHANICS
@@ -42,5 +48,7 @@ bash db-container.sh
 ```bash
 npm test
 ```
+
+
 
 

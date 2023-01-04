@@ -1,8 +1,8 @@
-const { connect } = require('../../config/db/sequelize');
+const { connect, sequelize } = require('../../config/db/sequelize');
 
 test('the connection should return true', () => {
     return connect()
-        .then(result => expect(result).toBeTruthy());
+        .then(result => expect(result).toBeTruthy())
 });
 
 // PROMISE

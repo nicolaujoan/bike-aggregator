@@ -1,7 +1,7 @@
 const BikeRepository = require('../../src/repositories/bikeRepository');
 const Bike = require('../../src/models/bike');
 
-describe('get some bikes by its brand', () => {
+describe('get some bikes', () => {
 
     let Repo;
 
@@ -14,7 +14,7 @@ describe('get some bikes by its brand', () => {
         return bikes.then(result => expect(result.length).toBe(10));
     });
 
-    test('get all the bikes in our system but specify attributes and filters', async () => {
+    test('get a single bike in our system but specify attributes and filters', async () => {
         const attributes = ['id', 'msrp', 'brand', 'model'];
         const filters = {brand: 'Giant', model: 'TCR'};
         

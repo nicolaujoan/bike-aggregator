@@ -42,7 +42,7 @@ npm install pm2 -g
 TESTING MECHANICS
 
 ```bash
-bash db-container.sh
+bash db-test.sh
 ```
 
 ```bash

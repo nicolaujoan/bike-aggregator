@@ -11,4 +11,4 @@ docker*.yml
 node_modules
 
 README.md
-db-container.sh
+db-test.sh

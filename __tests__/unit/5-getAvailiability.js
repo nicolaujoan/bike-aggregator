@@ -31,6 +31,8 @@ describe('get some availability', () => {
 
     // test('get all shops that has a bike by bike id', async () => {
 
+        // could be done doing the same of the last test but just passing id for bikeFilters
+
     // });
 
     // test('get all bikes of a given shop with some filters', async () => {

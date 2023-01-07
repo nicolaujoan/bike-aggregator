@@ -10,12 +10,12 @@ AvailabilityRepository.prototype.findOne = function () {
     return this.model._findOne(attributes, filters);
 }
 
-AvailabilityRepository.prototype.findBikesFromShop = function (shop) {
-    return this.model.findBikesFromShop(shop);
+AvailabilityRepository.prototype.findBikesByShop = function (shopFilter, bikeAttributes) {
+    return this.model.findBikesByShop(shopFilter, bikeAttributes);
 }
 
-AvailabilityRepository.prototype.findShopsByBike = function (shopAttributes, bikeFilter) {
-    return this.model.findShopsByBike(shopAttributes, bikeFilter);
+AvailabilityRepository.prototype.findShopsByBike = function (bikeFilter, shopAttributes) {
+    return this.model.findShopsByBike(bikeFilter, shopAttributes);
 }
 
 module.exports = AvailabilityRepository;

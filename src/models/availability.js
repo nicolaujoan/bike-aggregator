@@ -13,19 +13,19 @@ class Availability extends Model {
             });
 
             if (availability) {
-                let availabilityDTO = availability.map(singleAvailability => {
-                    let { Shop: shop, Bike: bike, in_stock } = singleAvailability;
+                const availabilityDTO = availability.map(singleAvailability => {
+                    const { Shop: shop, Bike: bike, in_stock } = singleAvailability;
                     return { shop: shop.dataValues, bike: bike.dataValues, in_stock };
                 });
                 return availabilityDTO;
-            }
+            }   
             return [];
         } catch (e) {
             console.log('exception: ', e.message);
         }
     }
 
-    static async findShopsByBike(shopAttributes, bikeFilter) {
+    static async findShopsByBike(bikeFilter, shopAttributes) {
         try {
             const shops = await this.findAll({
 
@@ -36,9 +36,8 @@ class Availability extends Model {
             });
 
             if (shops) {
-
-                let foundShops = shops.map(availability => {
-                    let { Shop: shop } = availability;
+                const foundShops = shops.map(availability => {
+                    const { Shop: shop } = availability;
                     return shop.dataValues;
                 }
                 );
@@ -52,8 +51,27 @@ class Availability extends Model {
         }
     }
 
-    static async findBikesByShop(bikeAttributes, shopFilter) {
-        
+    static async findBikesByShop(shopFilter, bikeAttributes) {
+        try {   
+            const bikes = await this.findAll({
+                include: [
+                    { model: Shop, where: shopFilter},
+                    {model: Bike, attributes: bikeAttributes}
+                ]
+            });
+
+            if (bikes) {
+                const foundBikes = bikes.map(availability => {
+                    const {Bike: bike} = availability;
+                    return bike.dataValues;
+                });
+                return foundBikes;
+            }
+            return []
+
+        } catch (e) {
+            console.log(e.message);
+        }
     }
 };
 

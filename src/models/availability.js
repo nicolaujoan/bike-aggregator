@@ -1,7 +1,8 @@
-const { DataTypes, Model, Sequelize } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
+const { sequelize } = require('../../config/db/sequelize');
 const Bike = require('./bike');
 const Shop = require('./shop');
-const { sequelize } = require('../../config/db/sequelize');
+const { removeDuplicates } = require('../utils/availabilityUtils');
 
 class Availability extends Model {
 
@@ -26,7 +27,6 @@ class Availability extends Model {
 
     static async findShopsByBike(shopAttributes, bikeFilter) {
         try {
-
             const shops = await this.findAll({
 
                 include: [
@@ -42,21 +42,18 @@ class Availability extends Model {
                     return shop.dataValues;
                 }
                 );
-                
-                const seen = new Set();
-                
-                return foundShops.filter(shop => {
-                    const duplicateShop = seen.has(shop.id);
-                    seen.add(shop.id);
-                    return !duplicateShop;
-                });
-
+                const shopsWithoutDuplicates = removeDuplicates(foundShops);
+                return shopsWithoutDuplicates;
             }
             return [];
 
         } catch (e) {
             console.log(e.message);
         }
+    }
+
+    static async findBikesByShop(bikeAttributes, shopFilter) {
+        
     }
 };
 

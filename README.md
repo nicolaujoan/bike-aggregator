@@ -49,6 +49,15 @@ bash db-test.sh
 npm test
 ```
 
+---
+many-many: problem was the bad mapping i guess
+
+how to use on update and on delete properly: https://stackoverflow.com/questions/6720050/foreign-key-constraints-when-to-use-on-update-and-on-delete
+
+Finally solved with belongs to in Availability with the foreign key on the source, can retrieve from Availability the Shop and the Bike.
+
+Remember in the hasX the foreign key is in the destination
+
 
 
 

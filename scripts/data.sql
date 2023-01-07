@@ -42,3 +42,7 @@ INSERT INTO shops (name, location, phone_number, hours, services) VALUES
 ('Sue''s Bike Shop', '789 Main Street, Anytown USA', '555-555-5557', 'Monday-Saturday: 10:00am-6:00pm, Sunday: Closed', 'Bike Sales, Repairs, Tune-ups, Rentals'),
 ('Chris''s Bike Shop', '321 Main Street, Anytown USA', '555-555-5558', 'Monday-Friday: 9:00am-5:00pm, Saturday: 9:00am-12:00pm, Sunday: Closed', 'Bike Sales, Repairs, Rentals'),
 ('Ann''s Bike Shop', '654 Main Street, Anytown USA', '555-555-5559', 'Monday-Saturday: 9:00am-5:00pm, Sunday: Closed', 'Bike Sales, Repairs, Tune-ups, Rentals');
+
+-- Availability
+INSERT INTO availability (shop_id, bike_id, in_stock) values
+(1, 1, 5), (1, 2, 4), (2, 3, 3), (1, 7, 3), (5, 4, 3), (3, 2, 1), (3, 3, 3), (4, 10, 2), (5, 2, 2), (2, 8, 7);

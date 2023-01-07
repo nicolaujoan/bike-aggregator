@@ -14,8 +14,8 @@ AvailabilityRepository.prototype.findBikesFromShop = function (shop) {
     return this.model.findBikesFromShop(shop);
 }
 
-AvailabilityRepository.prototype.findShopsByBike = function (bike) {
-    return this.model.findShopsByBike(bike);
+AvailabilityRepository.prototype.findShopsByBike = function (shopAttributes, bikeFilter) {
+    return this.model.findShopsByBike(shopAttributes, bikeFilter);
 }
 
 module.exports = AvailabilityRepository;

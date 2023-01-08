@@ -18,7 +18,7 @@ class Availability extends Model {
                     return { shop: shop.dataValues, bike: bike.dataValues, in_stock };
                 });
                 return availabilityDTO;
-            }   
+            }
             return [];
         } catch (e) {
             console.log('exception: ', e.message);
@@ -52,17 +52,17 @@ class Availability extends Model {
     }
 
     static async findBikesByShop(shopFilter, bikeAttributes) {
-        try {   
+        try {
             const bikes = await this.findAll({
                 include: [
-                    { model: Shop, where: shopFilter},
-                    {model: Bike, attributes: bikeAttributes}
+                    { model: Shop, where: shopFilter },
+                    { model: Bike, attributes: bikeAttributes }
                 ]
             });
 
             if (bikes) {
                 const foundBikes = bikes.map(availability => {
-                    const {Bike: bike} = availability;
+                    const { Bike: bike } = availability;
                     return bike.dataValues;
                 });
                 return foundBikes;
@@ -73,8 +73,38 @@ class Availability extends Model {
             console.log(e.message);
         }
     }
+
+    static async rentBike(bikeId, shopId) {
+        try {
+            let availability = await this.findOne({
+                where: {
+                    bike_id: bikeId,
+                    shop_id: shopId
+                },
+                attributes: ['in_stock']
+            });
+
+            // check if exists
+            availability = availability ? availability.dataValues : null;
+
+            // do stuff if it has stock
+            if (availability && availability.in_stock > 0) {
+
+                await this.update({ in_stock: (availability.in_stock - 1) },
+                    { where: { bike_id: bikeId, shop_id: shopId } }
+                );
+
+                return { rented: true, currentStock: availability.in_stock - 1 }
+            }
+
+            return { rented: false, currentStock: 0 }
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
 };
 
+// Model definition
 Availability.init({
     bike_id: {
         type: DataTypes.INTEGER,

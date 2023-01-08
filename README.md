@@ -58,6 +58,10 @@ Finally solved with belongs to in Availability with the foreign key on the sourc
 
 Remember in the hasX the foreign key is in the destination
 
+--- 
+Sequelize transactional tests -> https://github.com/sequelize/sequelize/issues/11408
+
+add this dev dependency -> https://www.npmjs.com/package/cls-hooked
 
 
 

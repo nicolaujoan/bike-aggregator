@@ -18,4 +18,8 @@ AvailabilityRepository.prototype.findShopsByBike = function (bikeFilter, shopAtt
     return this.model.findShopsByBike(bikeFilter, shopAttributes);
 }
 
+AvailabilityRepository.prototype.rentBike = function (bikeId, shopId) {
+    return this.model.rentBike(bikeId, shopId);
+}
+
 module.exports = AvailabilityRepository;

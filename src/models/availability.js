@@ -25,6 +25,17 @@ class Availability extends Model {
         }
     }
 
+    static async _findByPk(bikeId, shopId, attributes) {
+        let availability = await this.findOne({
+            where: {
+                bike_id: bikeId,
+                shop_id: shopId
+            },
+            attributes
+        });
+        return availability;
+    }
+
     static async findShopsByBike(bikeFilter, shopAttributes) {
         try {
             const shops = await this.findAll({
@@ -76,18 +87,9 @@ class Availability extends Model {
 
     static async rentBike(bikeId, shopId) {
         try {
-            let availability = await this.findOne({
-                where: {
-                    bike_id: bikeId,
-                    shop_id: shopId
-                },
-                attributes: ['in_stock']
-            });
-
-            // check if exists
+            let availability = await this._findByPk(bikeId, shopId, ['in_stock']);
             availability = availability ? availability.dataValues : null;
 
-            // do stuff if it has stock
             if (availability && availability.in_stock > 0) {
 
                 await this.update({ in_stock: (availability.in_stock - 1) },
@@ -96,8 +98,27 @@ class Availability extends Model {
 
                 return { rented: true, currentStock: availability.in_stock - 1 }
             }
-
             return { rented: false, currentStock: 0 }
+
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+    static async returnBike(bikeId, shopId) {
+        try {
+
+            let availability = await this._findByPk(bikeId, shopId, ['in_stock']);
+            availability = availability ? availability.dataValues : null;
+
+            if (availability) {
+                await this.update({ in_stock: (availability.in_stock + 1) },
+                    { where: { bike_id: bikeId, shop_id: shopId } }
+                );
+                return { returned: true, currentStock: availability.in_stock + 1 }
+            }
+            return null;
+
         } catch (e) {
             console.log(e.message);
         }

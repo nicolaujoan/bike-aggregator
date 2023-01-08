@@ -36,6 +36,7 @@ install it with the following command:
 ```bash
 npm install pm2 -g
 ``` 
+need to check if can do the same as a dev dependency
 
 ---
 
@@ -48,6 +49,8 @@ bash db-test.sh
 ```bash
 npm test
 ```
+
+All tests are based in the data of scripts/test.sql
 
 ---
 many-many: problem was the bad mapping i guess
@@ -62,6 +65,8 @@ Remember in the hasX the foreign key is in the destination
 Sequelize transactional tests -> https://github.com/sequelize/sequelize/issues/11408
 
 add this dev dependency -> https://www.npmjs.com/package/cls-hooked
+
+---
 
 
 

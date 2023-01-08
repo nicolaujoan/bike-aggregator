@@ -66,7 +66,15 @@ Sequelize transactional tests -> https://github.com/sequelize/sequelize/issues/1
 
 add this dev dependency -> https://www.npmjs.com/package/cls-hooked
 
+now should use the module pattern to reuse the functions for the before's and after's in the test suites to avoid repetition (and read the posts to understand it well)
+
 ---
+
+add a bike to a shop
+
+delete a bike (from bikes and delete it from the Availability (using cascade, read about it...))
+
+--- 
 
 
 

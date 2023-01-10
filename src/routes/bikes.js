@@ -14,8 +14,6 @@ router.get('/bike/:brand', controller.getSingleBikeByBrand);
 
 // CREATE
 
-// UPDATE
-
 // DELETE
 
 module.exports = router;

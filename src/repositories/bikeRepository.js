@@ -28,4 +28,12 @@ BikeRepository.prototype.findManyByBrand = function (brand) {
     return this.model.findManyByBrand(brand);
 }
 
+BikeRepository.prototype.addBike = function (bike) {
+    return this.model.addBike(bike);
+}
+
+BikeRepository.prototype.deleteBike = function (filters) {
+    return this.model.deleteBikes(filters);
+} 
+
 module.exports = BikeRepository;

@@ -85,6 +85,7 @@ class Availability extends Model {
         }
     }
 
+    // move to service -> _findByPk, update
     static async rentBike(bikeId, shopId) {
         try {
             let availability = await this._findByPk(bikeId, shopId, ['in_stock']);

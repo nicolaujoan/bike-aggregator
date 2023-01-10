@@ -15,9 +15,10 @@ exports.findShopsByBike = function (bikeFilter, shopAttributes) {
 
 exports.rentBike = function(bikeId, shopId) {
     const rentedResponse = availabilityRepository.rentBike(bikeId, shopId);
-    return 
+    return rentedResponse;
 }
 
 exports.returnBike = function(bikeId, shopId) {
-
-}
+    const returnedResponse = availabilityRepository.returnBike(bikeId, shopId);
+    return returnedResponse;
+}   

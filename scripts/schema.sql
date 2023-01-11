@@ -43,7 +43,7 @@ CREATE TABLE availability (
   in_stock INT NOT NULL,
   PRIMARY KEY (shop_id, bike_id),
   FOREIGN KEY (shop_id) REFERENCES shops (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-  FOREIGN KEY (bike_id) REFERENCES bikes (id) ON DELETE RESTRICT ON UPDATE CASCADE
+  FOREIGN KEY (bike_id) REFERENCES bikes (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE USER 'express'@'localhost' IDENTIFIED BY 'node';

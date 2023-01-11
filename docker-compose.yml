@@ -2,7 +2,7 @@ version: '3.5'
 services:
   api:
     env_file:
-    - .env.production
+      - .env.production
     container_name: api
     build:
       context: ./
@@ -16,14 +16,10 @@ services:
 
   db:
     env_file:
-    - .env.production
+      - .env.production
     image: mysql
     container_name: database-layer
     restart: always
-    volumes:
-        - ./scripts/schema.sql:/docker-entrypoint-initdb.d/1.sql
-        - ./scripts/data.sql:/docker-entrypoint-initdb.d/2.sql
-        - /opt/mysql_data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DB}
       MYSQL_USER: ${DB_USER}
@@ -35,6 +31,9 @@ services:
       - '3306:3306'
     expose:
       - 3306
+    volumes:
+        - "./scripts/pro.sql:/docker-entrypoint-initdb.d/1.sql"
+        - "/opt/mysql_data:/var/lib/mysql"
 networks: 
   db-net:
     

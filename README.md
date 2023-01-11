@@ -1,7 +1,5 @@
 # BIKE-AGGREGATOR
 
----
-
 ### INTRO
 
 This project is an API that pretends to act as a bike aggregator.

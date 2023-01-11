@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-const controller = require('../controllers/shopController');
+const shopsController = require('../controllers/shopController');
 
-router.get('/', controller.getAllShops);
+router.get('/', shopsController.getAllShops);
 
-router.get('/services/{name}', controller.getServicesByShopName);
+router.get('/services/:name', shopsController.getServicesByShopName);
 
 module.exports = router;

@@ -2,25 +2,25 @@ const {getAllCategories, getCategoryById, getAllParentCategories, getAllSubcateg
 
 exports.getAllCategories = async function (req, res) {
     const {attributes, ...filters} = req.query;
-    const shops = getAllCategories(attributes, filters);
-    res.send(shops);
+    const shops = await getAllCategories(attributes, filters);
+    return res.send(shops);
 }
 
 exports.getCategoryById = async function (req, res) {
     const id = req.params.id;
-    const shop = getCategoryById(id);
+    const shop = await getCategoryById(id);
     if (shop) {
-        res.send(shop);
+        return res.send(shop);
     }
-    res.status(404).send("SHOP NOT FOUND");
+    return res.status(404).send("SHOP NOT FOUND");
 }
 
 exports.getAllParentCategories = async function (req, res) {
-    const parentCategories = getAllParentCategories();
-    res.send(parentCategories);
+    const parentCategories = await getAllParentCategories();
+    return res.send(parentCategories);
 }
 
 exports.getAllSubcategories = async function (req, res) {
-    const subcategories = getAllSubcategories();
-    res.send(subcategories);
+    const subcategories = await getAllSubcategories();
+    return res.send(subcategories);
 }

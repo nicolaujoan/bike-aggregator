@@ -13,15 +13,13 @@ exports.getShopsByBike = async function (req, res) {
 }
 
 exports.rentBike = async function (req, res) {
-    const bikeId = req.params.bikeId;
-    const shopId = req.params.shopId;
+    const { bikeId, shopId } = req.body;
     const rentedResponse = await rentBike(bikeId, shopId);
     return res.send(rentedResponse);
 }
 
 exports.returnBike = async function (req, res) {
-    const bikeId = req.params.bikeId;
-    const shopId = req.params.shopId;
-    const returnedResponse = await rentBike(bikeId, shopId);
+    const { bikeId, shopId } = req.body;
+    const returnedResponse = await returnBike(bikeId, shopId);
     return res.send(returnedResponse);
 }

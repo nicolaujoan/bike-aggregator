@@ -1,80 +1,115 @@
-https://github.com/Mohammad-Faisal/professional-express-sequelize-docker-boilerplate
+# BIKE-AGGREGATOR
 
-https://millo-l.github.io/Synchronize-docker-compose-nodejs-mysql-execution-order/
+---
 
-- pd: solution was the incorrect name of the host
+### INTRO
 
-- the volume is mounted on /opt/mysql_data, maybe in localhost is ok to put it in the project folder structure
+This project is an API that pretends to act as a bike aggregator.
 
-- start to test some use cases and create some queries with sequelize (transactions, supertest, jest)
+We have 3 entities in our system:
 
-- divide the docker-compose files to do different profiles
+- Shop: The shops that are part of the aggregator
 
-- try the repository and use it with mongoDB atlas if it is possible
+- Bike: The bikes that are rented
 
-- make some data migration/generation
+- Availability: The association between the shops and the bikes they rent, with the stock available for renting
 
-- try to think how to implement a microservices architecture
+---
 
---- 
+### ARCHITECTURE
 
-About testing resources:
+This api follows a MVC architecture with some more components that decouple the system a little bit.
 
-Have used jest and a combination between jest and express
+These other components are the services (in charge of business logic) and the repositories which are responsible of the data access.
 
-- <a href="https://jestjs.io/docs/getting-started">jest</a>
-- <a href="https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/">jest and supertest</a>
+Then we have a utils package to reuse some generic functions.
 
---- 
+---
 
-Usage of process manager to run npm scripts in detach mode, is useful to name processes and stop them in such an elegant way
+### DATA ABSTRACTION
 
-pm2
+There's a data abstraction that pretends to decouple the database from the system:
+
+The repositories have a model parameter passed when they are created.
+
+This model could be a Sequelize, Mongoose... 
+
+The model has to implement the methods that the repository has in order to follow the abstraction. So, the Repository acts as an interface to be implemented by the models itself.
+
+Then the model is an ES6 class that creates some static methods that are the ones called in its specific repository.
+
+---
+
+### DATABASE DETAILS
+
+The database used is in this case mysql version 8 which is a docker container mounted with some volumes and initial scripts.
+
+Then to get things simplified, Sequelize ORM is used only for the mapping between relational tables and models and to simplify the queries.
+
+In the scripts folder, the schema.sql and data.sql are used to create the schema and some sample data (generated with chatGPT), and the test.sql do the same but is the script used by the testing database
+
+https://sequelize.org/docs/v6/getting-started<br>
+https://www.mysql.com/ <br>
+https://hub.docker.com/_/mysql<br>
+
+---
+
+### ENVIRONMENTS
+
+To manage different config variables, .env files are used, and there's a NODE_ENV variable setted in the npm scripts and then the .env files are loaded with a postfix of the value of this variable.
+
+In the testing environment, a mysql container is used and is started with the command:
+
+```bash
+bash db-test.sh
+```
+Then with npm test, there are some npm scripts used calling the pretest, test and posttest.
+
+A process manager is used (pm2) to start and stop the application in test mode, so in the unit and integration tests we don't need to manage the connection every time.
 
 install it with the following command:
 
 ```bash
 npm install pm2 -g
-``` 
-need to check if can do the same as a dev dependency
-
----
-
-TESTING MECHANICS
-
-```bash
-bash db-test.sh
 ```
-
-```bash
-npm test
-```
-
-All tests are based in the data of scripts/test.sql
-
----
-many-many: problem was the bad mapping i guess
-
-how to use on update and on delete properly: https://stackoverflow.com/questions/6720050/foreign-key-constraints-when-to-use-on-update-and-on-delete
-
-Finally solved with belongs to in Availability with the foreign key on the source, can retrieve from Availability the Shop and the Bike.
-
-Remember in the hasX the foreign key is in the destination
-
---- 
-Sequelize transactional tests -> https://github.com/sequelize/sequelize/issues/11408
-
-add this dev dependency -> https://www.npmjs.com/package/cls-hooked
-
-now should use the module pattern to reuse the functions for the before's and after's in the test suites to avoid repetition (and read the posts to understand it well)
+need to check if can be installed as a dev-dependency
 
 ---
 
-add a bike to a shop
+### TESTING
 
-delete a bike (from bikes and delete it from the Availability (using cascade, read about it...))
+I have used jest for the unit testing and supertest for integration testing and simulating the http requests.
 
---- 
+Some useful resources:
+- <a href="https://jestjs.io/docs/getting-started">jest</a>
+- <a href="https://www.albertgao.xyz/2017/05/24/how-to-test-expressjs-with-jest-and-supertest/">jest and supertest</a>
+
+Then, to prevent db from being modified when doing update, add or delete, have found a post on github 
+that explains how to use transactions with jest and sequelize (need to investigate a little bit about it)
+
+- https://github.com/sequelize/sequelize/issues/11408
+- https://sequelize.org/docs/v6/other-topics/transactions/
+- https://www.npmjs.com/package/cls-hooked
+---
+
+### DEPLOYMENT
+
+There's a docker-compose.yaml that mounts the api image and the mysql image and communicates them
+through a network and expose ports in the machine.
+
+The api is mounted from the .dockerfile and the entrypoint is overriden to wait mysql to be ready and the execute the express api.
+
+This task is done by using the dockerize service.
+
+some resources:
+
+- https://github.com/jwilder/dockerize
+- https://millo-l.github.io/Synchronize-docker-compose-nodejs-mysql-execution-order/
+- https://github.com/Mohammad-Faisal/professional-express-sequelize-docker-boilerplate
+
+---
+
+
 
 
 

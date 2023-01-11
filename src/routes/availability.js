@@ -1,17 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-const controller = require('../controllers/availabilityController');
+const availabilityController = require('../controllers/availabilityController');
 
 
 // READ
-router.get('/bikes-by-shop', controller.getBikesByShop);
+router.get('/bikes-by-shop', availabilityController.getBikesByShop);
 
-router.get('/shops-by-bike', controller.getShopsByBike);
+router.get('/shops-by-bike', availabilityController.getShopsByBike);
 
 // UPDATE
-router.post('rent-bike', controller.rentBike);
+router.post('rent-bike', availabilityController.rentBike);
 
-router.post('return-bike', controller.returnBike);
+router.post('return-bike', availabilityController.returnBike);
 
 module.exports = router;

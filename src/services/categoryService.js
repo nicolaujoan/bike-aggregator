@@ -1,5 +1,5 @@
 const CategoryRepository = require('../repositories/categoryRepository');
-const Category = require('../repositories/categoryRepository');
+const Category = require('../models/category');
 
 const categoryRepository = new CategoryRepository(Category);
 

@@ -32,8 +32,7 @@ services:
     expose:
       - 3306
     volumes:
-        - "./scripts/pro.sql:/docker-entrypoint-initdb.d/1.sql"
-        - "/opt/mysql_data:/var/lib/mysql"
+        - ./scripts/pro.sql:/docker-entrypoint-initdb.d/1.sql
 networks: 
   db-net:
     

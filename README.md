@@ -110,13 +110,13 @@ some resources:
 ---
 ### TODO:
 
-- Try to work with mongoDB to test if the data-access abstraction works fine
+- [ ] Try to work with mongoDB to test if the data-access abstraction works fine
 
-- Improve transactional tests
+- [ ] Improve transactional tests
 
-- Do better business use-cases
+- [ ] Do better business use-cases
 
-- Embedded postman collection
+- [ ] Embedded postman collection
 
 
 

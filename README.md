@@ -119,6 +119,8 @@ some resources:
 
 - [ ] Add more Integration tests
 
+- [ ] Handle data with middlewares and normalize responses
+
 - [ ] Embedded postman collection
 
 

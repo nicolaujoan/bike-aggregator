@@ -6,11 +6,13 @@
 
 This project is an API that pretends to act as a bike aggregator.
 
-We have 3 entities in our system:
+We have 4 entities in our system:
 
 - Shop: The shops that are part of the aggregator
 
 - Bike: The bikes that are rented
+
+- Category: The category of the bike, which is related to subcategories hierarchically (self join)
 
 - Availability: The association between the shops and the bikes they rent, with the stock available for renting
 

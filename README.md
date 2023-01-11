@@ -114,7 +114,7 @@ some resources:
 
 - [ ] Improve transactional tests
 
-- [ ] Do better business use-cases
+- [ ] Do better business use-cases and make use of services layer properly
 
 - [ ] Add more Integration tests
 

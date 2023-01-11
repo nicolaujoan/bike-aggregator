@@ -1,4 +1,4 @@
-const { findAllBikes, findBike, findBikeByBrand, findAllBikesByBrand } = require('../services/bikeService');
+const { findAllBikes, findBike, findBikeByBrand, findAllBikesByBrand, addBike, deleteBikes } = require('../services/bikeService');
 
 exports.getAllBikes = async function (req, res) {
     let { attributes, ...filters } = req.query;
@@ -22,4 +22,19 @@ exports.getSingleBikeByBrand = async function (req, res) {
     const brand = req.params.brand;
     const bike = await findBikeByBrand(brand);
     return res.send(bike);
+}
+
+exports.addBike = async function (req, res) {
+    const bikeToCreate = req.body;
+    const createdBike = await addBike(bikeToCreate);
+
+    return createdBike ?
+        res.status(201).send({ created: true, bike: createdBike })
+        : res.status(400).send({ created: false })
+}
+
+exports.deleteBikes = async function (req, res) {
+    const bikeFilters = req.query;
+    const deletedBikesCount = await deleteBikes(bikeFilters);
+    return res.send({deletedCount: deletedBikesCount});
 }

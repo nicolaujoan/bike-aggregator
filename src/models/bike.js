@@ -38,7 +38,7 @@ class Bike extends Model {
   }
 
   static async deleteBikes (filters) {
-      const numDeletedBikes = await this.destroy(filters);
+      const numDeletedBikes = await this.destroy({where: filters});
       return numDeletedBikes;
   }
 

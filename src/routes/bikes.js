@@ -12,6 +12,10 @@ router.get('/:brand', bikeController.getAllBikesByBrand);
 
 router.get('/bike/:brand', bikeController.getSingleBikeByBrand);
 
+router.delete('/delete', bikeController.deleteBikes);  // mirar si acepta req params
+
+router.post('/add-bike', bikeController.addBike);  // pasar body de bici a crear
+
 // CREATE
 
 // DELETE

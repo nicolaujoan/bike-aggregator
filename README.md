@@ -115,6 +115,7 @@ some resources:
 - [ ] Improve transactional tests
 
 - [ ] Do better business use-cases and make use of services layer properly
+      ex: (add bike and associate to a given shop, quit a bike from a given shop, update stock, add price of renting...)
 
 - [ ] Add more Integration tests
 

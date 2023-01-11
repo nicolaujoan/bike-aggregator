@@ -3,6 +3,11 @@ const Availability = require('../models/availability');
 
 const availabilityRepository = new AvailabilityRepository(Availability); 
 
+exports.findAvailability = function (attributes, filters) {
+    const availability = availabilityRepository.findAll(attributes, filters);
+    return availability;
+}
+
 exports.findBikesByShop = function (shopFilter, bikeAttributes) {
     const bikes = availabilityRepository.findBikesByShop(shopFilter, bikeAttributes);
     return bikes;

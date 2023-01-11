@@ -116,6 +116,8 @@ some resources:
 
 - [ ] Do better business use-cases
 
+- [ ] Add more Integration tests
+
 - [ ] Embedded postman collection
 
 

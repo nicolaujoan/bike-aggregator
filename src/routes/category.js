@@ -7,10 +7,10 @@ const categoryController = require('../controllers/categoryController');
 // READ
 router.get('/', categoryController.getAllCategories);
 
-// router.get('/{id}', categoryController.getCategoryById);
+router.get('/category/:id', categoryController.getCategoryById);
 
-router.get('/subcategories', categoryController.getAllParentCategories);
+router.get('/subcategories', categoryController.getAllSubcategories);
 
-router.get('/parent-categories', categoryController.getAllSubcategories);
+router.get('/parent-categories', categoryController.getAllParentCategories);
 
 module.exports = router;

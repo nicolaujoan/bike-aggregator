@@ -1,4 +1,10 @@
-const { findBikesByShop, findShopsByBike, rentBike, returnBike } = require('../services/availabilityService');
+const { findAvailability, findBikesByShop, findShopsByBike, rentBike, returnBike } = require('../services/availabilityService');
+
+exports.getAvailability = async function (req, res) {
+    const {attributes, ...filters} = req.query;
+    const availability = await findAvailability(attributes, filters);
+    return res.send(availability);
+}
 
 exports.getBikesByShop = async function (req, res) {
     const { attributes, ...filters } = req.query;

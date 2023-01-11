@@ -37,6 +37,7 @@ class Category extends Model {
 
         if (categories) {
             return categories.map(category => {
+                category = category.dataValues;
                 let { parent_id, ...categoryDTO } = category;
                 return categoryDTO;
             });

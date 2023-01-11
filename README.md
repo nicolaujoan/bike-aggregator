@@ -108,6 +108,15 @@ some resources:
 - https://github.com/Mohammad-Faisal/professional-express-sequelize-docker-boilerplate
 
 ---
+### TODO:
+
+- Try to work with mongoDB to test if the data-access abstraction works fine
+
+- Improve transactional tests
+
+- Do better business use-cases
+
+- Embedded postman collection
 
 
 

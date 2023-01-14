@@ -1,4 +1,4 @@
-const { findAllBikes, findBike, findBikeByBrand, findAllBikesByBrand, addBike, deleteBikes } = require('../services/bikeService');
+const { findAllBikes, findBike, findBikeByBrand, findAllBikesByBrand, addBike, deleteBikes, addBikes } = require('../services/bikeService');
 
 exports.getAllBikes = async function (req, res) {
     let { attributes, ...filters } = req.query;
@@ -29,7 +29,16 @@ exports.addBike = async function (req, res) {
     const createdBike = await addBike(bikeToCreate);
 
     return createdBike ?
-        res.status(201).send({ created: true, bike: createdBike })
+        res.status(201).send({ created: true, createdBike })
+        : res.status(400).send({ created: false })
+}
+
+exports.addBikes = async function (req, res) {
+    const bikesToCreate = req.body;
+    const createdBikes = await addBikes(bikesToCreate);
+
+    return createdBikes && createdBikes.length ?
+        res.status(201).send({ created: true, createdBikes })
         : res.status(400).send({ created: false })
 }
 

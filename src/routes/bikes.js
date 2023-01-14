@@ -15,6 +15,8 @@ router.get('/bike/:brand', bikeController.getSingleBikeByBrand);
 // CREATE
 router.post('/add-bike', bikeController.addBike);
 
+router.post('/add-bikes', bikeController.addBikes);
+
 // DELETE
 router.delete('/delete', bikeController.deleteBikes);
 

@@ -11,18 +11,14 @@ exports.findAllBikes = function(attributes, filters) {
     return bikeRepository.findAll(attributes, filters);
 }
 
-exports.findBikeByBrand = function(brand) {
-    return bikeRepository.findOneByBrand(brand);
-}
-
-exports.findAllBikesByBrand = function(brand) {
-    return bikeRepository.findManyByBrand(brand);
-}
-
 exports.addBike = function (bike) {
-    return bikeRepository.addBike(bike);
+    return bikeRepository.addOne(bike);
+}
+
+exports.addBikes = function (bikes) {
+    return bikeRepository.addMany(bikes);
 }
 
 exports.deleteBikes = function (bikeFilters) {
-    return bikeRepository.deleteBike(bikeFilters);
+    return bikeRepository.delete(bikeFilters);
 }

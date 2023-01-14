@@ -17,27 +17,21 @@ class Bike extends Model {
     return bike ? bike.dataValues : null;
   }
 
-  static async findOneByBrand(brand) {
-    return await this.findOne({ where: { brand } })
-      .then(data => data ? data.dataValues : null)
-      .catch(e => console.log(e.message));
-  }
-
-  static async findManyByBrand(brand) {
-    const bikes = await this.findAll({ where: {brand} });
-    if (bikes) {
-      const bikesDTO = bikes.map(bike => bike.dataValues );
-      return bikesDTO;
-    }
-    return [];
-  }
-
-  static async addBike(bike) {
+  static async addOne(bike) {
     const createdBike = await this.create(bike);
     return createdBike.dataValues;
   }
 
-  static async deleteBikes (filters) {
+  static async addMany(bikes) {
+    const createdBikes = [];
+    for (const bike of bikes) {
+      const createdBike = await this.create(bike);
+      createdBikes.push(createdBike.dataValues);
+    }
+    return createdBikes;
+  }
+
+  static async _delete (filters) {
       const numDeletedBikes = await this.destroy({where: filters});
       return numDeletedBikes;
   }

@@ -23,20 +23,16 @@ BikeRepository.prototype.findOne = function (attributes, filters) {
     return this.model._findOne(attributes, filters);
 }
 
-BikeRepository.prototype.findOneByBrand = function (brand) {
-    return this.model.findOneByBrand(brand);
+BikeRepository.prototype.addOne = function (bike) {
+    return this.model.addOne(bike);
 }
 
-BikeRepository.prototype.findManyByBrand = function (brand) {
-    return this.model.findManyByBrand(brand);
+BikeRepository.prototype.addMany = function (bikes) {
+    return this.model.addMany(bikes);
 }
 
-BikeRepository.prototype.addBike = function (bike) {
-    return this.model.addBike(bike);
+BikeRepository.prototype.delete = function (filters) {
+    return this.model._delete(filters);
 }
-
-BikeRepository.prototype.deleteBike = function (filters) {
-    return this.model.deleteBikes(filters);
-} 
 
 module.exports = BikeRepository;

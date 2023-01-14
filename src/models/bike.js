@@ -34,7 +34,7 @@ class Bike extends Model {
 
   static async addBike(bike) {
     const createdBike = await this.create(bike);
-    return createdBike;
+    return createdBike.dataValues;
   }
 
   static async deleteBikes (filters) {

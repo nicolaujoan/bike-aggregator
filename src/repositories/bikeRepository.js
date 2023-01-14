@@ -8,6 +8,9 @@
 // in the model and do the details of implementation there, so our Repository is agnostic to
 // the model we pass
 
+// findByBrand quit it
+// add and delete normal names, + add and delete many   
+
 function BikeRepository(model) {
     this.model = model;
 }

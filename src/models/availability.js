@@ -33,7 +33,7 @@ class Availability extends Model {
             },
             attributes
         });
-        return availability;
+        return availability ? availability.dataValues : null;
     }
 
     static async findShopsByBike(bikeFilter, shopAttributes) {
@@ -83,6 +83,23 @@ class Availability extends Model {
         } catch (e) {
             console.log(e.message);
         }
+    }
+
+    static async _update(updateAvailabilityDTO) {
+        const newStock = updateAvailabilityDTO.rent
+            ? updateAvailabilityDTO.stock - 1
+            : updateAvailabilityDTO.stock + 1;
+
+        const updateResult = await this.update({
+            in_stock: newStock
+        },
+            {
+                where: {
+                    bike_id: updateAvailabilityDTO.bikeId,
+                    shop_id: updateAvailabilityDTO.shopId
+                }
+            })
+        return updateResult;
     }
 
     // move to service -> _findByPk, update

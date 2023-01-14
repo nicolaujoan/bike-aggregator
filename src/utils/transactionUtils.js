@@ -3,54 +3,47 @@
  * the beforeAll, beforeEach, afterAll and afterEach used by Jest 
  */
 
-const cls = require('cls-hooked');
-
-const transactionUtils = function (model, theNamespace, theContext) {
-
-    let transaction;  // Parent Transaction
-    let wrapperTransaction;  // For each nested transaction
-
-    // Create namespace
-    const namespace = cls.createNamespace(theNamespace);
+function Transactional(model, contextName) {
+    var NAMESPACE = 'default-namespace';
+    const cls = require('cls-hooked');
     const Sequelize = require('sequelize');
+    var namespace = cls.createNamespace(NAMESPACE);
     Sequelize.useCLS(namespace);
+    var context;
+    var wrapperTransaction;
+    var transaction;
 
-    const beforeAllBase = async () => {
-        // set up the transaction
+    async function beforeAllBase() {
         transaction = await model.sequelize.transaction({
             autocommit: false
         });
 
-        // create a context and enter the context
-        const context = namespace.createContext();
+        context = namespace.createContext();
         namespace.enter(context);
-        namespace.set(theContext, transaction);
-    };
+        namespace.set(contextName, transaction);
+    }
 
-    // wrap each test in a nested transaction
-    const beforeEachBase = async () => {
+    async function beforeEachBase() {
         wrapperTransaction = await model.sequelize.transaction({
             autocommit: false,
             transaction
         });
     }
 
-    // Rollback each nested transaction
-    const afterEachBase = async () => {
+    async function afterEachBase() {
         await wrapperTransaction.rollback();
     }
 
-    // Rollback the actual transaction
-    const afterAllBase = async () => {
+    async function afterAllBase() {
         await transaction.rollback();
     }
 
     return {
-        beforeAllBase,
+        beforeAllBase, 
         beforeEachBase,
         afterEachBase,
         afterAllBase
     }
 };
 
-module.exports = transactionUtils;
+module.exports = Transactional;

@@ -2,6 +2,8 @@ const Availability = require('../../src/models/availability');
 const AvailabilityRepository = require('../../src/repositories/availabilityRepository');
 const cls = require('cls-hooked');
 
+// https://stackoverflow.com/questions/27174980/howto-make-a-unit-test-with-rollback-using-express-sequelize-mocha-and-superte
+
 let transaction;  // Parent Transaction
 let wrapperTransaction;  // For each nested transaction
 
@@ -20,7 +22,7 @@ describe('renting use cases', () => {
 
         // set up the transaction
         transaction = await Availability.sequelize.transaction({
-            autocommit: false
+            autocommit: false,
         });
 
         // create a context and enter the context

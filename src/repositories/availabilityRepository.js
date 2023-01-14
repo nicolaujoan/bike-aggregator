@@ -14,6 +14,14 @@ AvailabilityRepository.prototype.findShopsByBike = function (bikeFilter, shopAtt
     return this.model.findShopsByBike(bikeFilter, shopAttributes);
 }
 
+AvailabilityRepository.prototype.findByPk = function (bikeId, shopId) {
+    return this.model._findByPk(bikeId, shopId);
+}
+
+AvailabilityRepository.prototype.update = function (updateAvailabilityDTO) {
+    return this.model._update(updateAvailabilityDTO);
+}
+
 AvailabilityRepository.prototype.rentBike = function (bikeId, shopId) {
     return this.model.rentBike(bikeId, shopId);
 }

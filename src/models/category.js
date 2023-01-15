@@ -55,6 +55,7 @@ class Category extends BaseModel {
 Category.init({
     id: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
 

@@ -22,3 +22,11 @@ exports.getAllSubcategories = function () {
     const subcategories = categoryRepository.findAllSubcategories();
     return subcategories;
 }
+
+exports.addCategory = function (category) {
+    return categoryRepository.addOne(category);
+}
+
+exports.addCategories = function (categories) {
+    return categoryRepository.addMany(categories);
+}

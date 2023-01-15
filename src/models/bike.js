@@ -1,49 +1,9 @@
-const { DataTypes, Model } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const BaseModel = require('./abstractions/baseModel');
 const Category = require('./category');
 const { sequelize } = require('../../config/db/sequelize');
 
-class Bike extends Model {
-
-  static async _findAll(attributes, filters) {
-    const bikes = await this.findAll({attributes, where: filters});
-    if (bikes) {
-      return bikes.map(bike => bike.dataValues);
-    }
-    return [];
-  }
-
-  static async _findOne(attributes, filters) {
-    const bike = await this.findOne({attributes, where: filters});
-    return bike ? bike.dataValues : null;
-  }
-
-  static async addOne(bike) {
-    const createdBike = await this.create(bike);
-    return createdBike.dataValues;
-  }
-
-  static async addMany(bikes) {
-    const createdBikes = [];
-    for (const bike of bikes) {
-      const createdBike = await this.create(bike);
-      createdBikes.push(createdBike.dataValues);
-    }
-    return createdBikes;
-  }
-
-  static async _delete (filters) {
-      const numDeletedBikes = await this.destroy({where: filters});
-      return numDeletedBikes;
-  }
-
-  create() {
-    this.save();
-  }
-
-  getIdAndBrand() {
-    return `id: ${this.id}, brand: ${this.brand}`;
-  }
-}
+class Bike extends BaseModel {}
 
 Bike.init({
   id: {

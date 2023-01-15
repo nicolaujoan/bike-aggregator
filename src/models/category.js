@@ -1,17 +1,8 @@
-const { DataTypes, Model, Op } = require('sequelize');
+const { DataTypes, Op } = require('sequelize');
 const { sequelize } = require('../../config/db/sequelize');
+const BaseModel = require('./abstractions/baseModel');
 
-class Category extends Model {
-
-    static async _findAll(attributes, filters) {
-        attributes = attributes || ['id', 'name', 'type'];
-        const categories = await this.findAll({ attributes, where: filters });
-
-        if (categories) {
-            return categories.map(category => category.dataValues);
-        }
-        return [];
-    }
+class Category extends BaseModel {
 
     static async findOneById(id) {
         let category = await this.findByPk(id);

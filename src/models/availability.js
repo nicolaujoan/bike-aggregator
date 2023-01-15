@@ -101,46 +101,6 @@ class Availability extends Model {
             })
         return updateResult;
     }
-
-    // move to service -> _findByPk, update
-    static async rentBike(bikeId, shopId) {
-        try {
-            let availability = await this._findByPk(bikeId, shopId, ['in_stock']);
-            availability = availability ? availability.dataValues : null;
-
-            if (availability && availability.in_stock > 0) {
-
-                await this.update({ in_stock: (availability.in_stock - 1) },
-                    { where: { bike_id: bikeId, shop_id: shopId } }
-                );
-
-                return { rented: true, currentStock: availability.in_stock - 1 }
-            }
-            return { rented: false, currentStock: 0 }
-
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
-
-    static async returnBike(bikeId, shopId) {
-        try {
-
-            let availability = await this._findByPk(bikeId, shopId, ['in_stock']);
-            availability = availability ? availability.dataValues : null;
-
-            if (availability) {
-                await this.update({ in_stock: (availability.in_stock + 1) },
-                    { where: { bike_id: bikeId, shop_id: shopId } }
-                );
-                return { returned: true, currentStock: availability.in_stock + 1 }
-            }
-            return null;
-
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
 };
 
 // Model definition

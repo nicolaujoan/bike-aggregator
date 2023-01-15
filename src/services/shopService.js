@@ -8,7 +8,19 @@ exports.getAllShops = function (attributes, filters) {
     return shops;
 }
 
-exports.getServicesByShopName = function (name) {
-    const shopServices = shopRepository.findServicesByShopName(name);
-    return shopServices;
+exports.getSingleShop = function (attributes, filters) {
+    const shop = shopRepository.findOne(attributes, filters);
+    return shop;
+}
+
+exports.addShop = function (shop) {
+    return shopRepository.addOne(shop);
+}
+
+exports.addShops = function (shops) {
+    return shopRepository.addMany(shops);
+}
+
+exports.deleteShops = function (shopFilters) {
+    return shopRepository.delete(shopFilters);
 }

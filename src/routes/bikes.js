@@ -8,10 +8,6 @@ router.get('/', bikeController.getAllBikes);
 
 router.get('/bike', bikeController.getSingleBike);
 
-router.get('/:brand', bikeController.getAllBikesByBrand);
-
-router.get('/bike/:brand', bikeController.getSingleBikeByBrand);
-
 // CREATE
 router.post('/add-bike', bikeController.addBike);
 

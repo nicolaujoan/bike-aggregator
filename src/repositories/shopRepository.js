@@ -6,9 +6,21 @@ ShopRepository.prototype.findAll = function (attributes, filters) {
     return this.model._findAll(attributes, filters);
 }
 
-// this can be moved to the services too, or just using filters is enough
-ShopRepository.prototype.findServicesByShopName = function (shopName) {
-    return this.model.findServicesByName(shopName);
+ShopRepository.prototype.findOne = function (attributes, filters) {
+    return this.model._findOne(attributes, filters);
 }
+
+ShopRepository.prototype.addOne = function (shop) {
+    return this.model.addOne(shop);
+};
+
+ShopRepository.prototype.addMany = function (shops) {
+    return this.model.addMany(shops);
+}
+
+ShopRepository.prototype.delete = function (filters) {
+    return this.model._delete(filters);
+}
+
 
 module.exports = ShopRepository;

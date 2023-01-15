@@ -5,6 +5,12 @@ const shopsController = require('../controllers/shopController');
 
 router.get('/', shopsController.getAllShops);
 
-router.get('/services/:name', shopsController.getServicesByShopName);
+router.get('/shop/', shopsController.getSingleShop);
+
+router.post('/add-shop', shopsController.addShop);
+
+router.post('/add-shops', shopsController.addShops);
+
+router.delete('/delete', shopsController.deleteShops);
 
 module.exports = router;

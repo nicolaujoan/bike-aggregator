@@ -1,0 +1,1 @@
+// this model would be a base one (ES6 class extending Sequelize model)

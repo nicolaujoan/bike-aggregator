@@ -22,12 +22,4 @@ AvailabilityRepository.prototype.update = function (updateAvailabilityDTO) {
     return this.model._update(updateAvailabilityDTO);
 }
 
-AvailabilityRepository.prototype.rentBike = function (bikeId, shopId) {
-    return this.model.rentBike(bikeId, shopId);
-}
-
-AvailabilityRepository.prototype.returnBike = function (bikeId, shopId) {
-    return this.model.returnBike(bikeId, shopId);
-}
-
 module.exports = AvailabilityRepository;

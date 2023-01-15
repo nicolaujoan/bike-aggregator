@@ -11,15 +11,35 @@ class Shop extends Model {
         return [];
     }
 
-    static async findServicesByName(name) {
-        const shop = await this.findOne({ attributes: ['id', 'name', 'services'], where: {name} });
+    static async _findOne(attributes, filters) {
+        const shop = await this.findOne({ attributes, where: filters });
         return shop ? shop.dataValues : null;
+    }
+
+    static async addOne(shop) {
+        const createdShop = await this.create(shop);
+        return createdShop.dataValues;
+    }
+
+    static async addMany(shops) {
+        const createdShops = [];
+        for (const shop of shops) {
+            const createdShop = await this.create(shop);
+            createdShops.push(createdShop.dataValues);
+        }
+        return createdShops;
+    }
+
+    static async _delete(filters) {
+        const numDeletedShops = await this.destroy({ where: filters });
+        return numDeletedShops;
     }
 };
 
 Shop.init({
     id: {
         type: DataTypes.INTEGER,
+        autoIncrement: true,
         primaryKey: true
     },
 

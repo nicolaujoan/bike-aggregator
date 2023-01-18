@@ -14,6 +14,7 @@ We have 4 entities in our system:
 
 - Availability: The association between the shops and the bikes they rent, with the stock available for renting
 
+![er diagram](./images/er-bikes.png)
 ---
 
 ### ARCHITECTURE

@@ -1,7 +1,7 @@
-const {getAllCategories, getCategoryById, getAllParentCategories, getAllSubcategories, addCategories, addCategory} = require('../services/categoryService');
+const { getAllCategories, getCategoryById, getAllParentCategories, getAllSubcategories, addCategories, addCategory } = require('../services/categoryService');
 
 exports.getAllCategories = async function (req, res) {
-    const {attributes, ...filters} = req.query;
+    const { attributes, ...filters } = req.query;
     const shops = await getAllCategories(attributes, filters);
     return res.send(shops);
 }

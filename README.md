@@ -109,6 +109,41 @@ some resources:
 - https://github.com/Mohammad-Faisal/professional-express-sequelize-docker-boilerplate
 
 ---
+
+### ES6 FEATURES: 
+
+##### Array manipulation with filter and use of Set object
+
+![array + set](./images/code1.png)
+
+used in availability utils to remove duplicates
+
+##### Array manipulation with map and destructuring to rename properties and copy values
+
+![map + destructuring](./images/code2.png)
+
+used in availability model to present model data and hide sequelize details
+
+##### ES6 classes and more array manipulation
+
+![class + arrayManipulation](./images/code3.png)
+
+to extend it after from a concrete model and to manipulate array data extracted from DB
+
+##### Destructuring to get request parameters
+
+![destructuring req params](./images/code4.png)
+
+to get an specific request param by its name and to get the rest of params with spread operator
+
+##### Class inheritance with ES6
+
+![inheritance](./images/code5.png)
+
+to inherit the base model and reuse its functions
+
+---
+
 ### TODO:
 
 - [ ] Try to work with mongoDB to test if the data-access abstraction works fine

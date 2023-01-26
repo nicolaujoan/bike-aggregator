@@ -24,7 +24,7 @@ describe('Get some categories', () => {
     });
 
     test('get all categories and subcategories in the system', async () => {
-        const categories = await Repo.findAll();
+        const categories = await Repo.findAll(['id', 'name', 'type']);
 
         expect(categories).toStrictEqual(DB_CATEGORIES);
     });

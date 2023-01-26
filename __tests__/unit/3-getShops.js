@@ -16,7 +16,7 @@ describe('get some shops', () => {
 
     test('get shop services details given the shop name', async () => {
         const SHOP_NAME = "John's Bike Shop";
-        const shopDetails = await Repo.findServicesByShopName(SHOP_NAME);
+        const shopDetails = await Repo.findOne(['id', 'name', 'services'], {name: SHOP_NAME});
 
         const expectedObject = {
             id: 1,
@@ -29,7 +29,7 @@ describe('get some shops', () => {
 
     test('get a null reference when request services details of an inexistent shop', async () => {
         const SHOP_NAME = 'Bicicletes can Sancho';
-        const shopDetails = await Repo.findServicesByShopName(SHOP_NAME);
+        const shopDetails = await Repo.findOne(undefined, {name: SHOP_NAME});
 
         expect(shopDetails).toBeNull();
     });

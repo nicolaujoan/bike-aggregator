@@ -116,7 +116,7 @@ some resources:
 
 ![array + set](./images/code1.png)
 
-used in availability utils to remove duplicates
+used in availability utils to remove duplicates, also use default param in function
 
 ##### Array manipulation with map and destructuring to rename properties and copy values
 

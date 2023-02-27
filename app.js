@@ -11,6 +11,9 @@ var categoriesRouter = require('./src/routes/category');
 
 var app = express();
 
+// Setup to serve static files (relative from directory where node is launched)
+app.use('/static', express.static(path.join(__dirname, 'public')));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

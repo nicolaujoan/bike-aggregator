@@ -144,6 +144,16 @@ to inherit the base model and reuse its functions
 
 ---
 
+### FRONTEND
+
+A static site is served from /public folder thanks to this snippet located in the app.js file:
+
+```js
+app.use('/static', express.static(path.join(__dirname, 'public')));
+```
+
+---
+
 ### TODO:
 
 - [ ] Try to work with mongoDB to test if the data-access abstraction works fine

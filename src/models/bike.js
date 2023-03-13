@@ -79,6 +79,10 @@ Bike.init({
 
   seatpost: {
     type: DataTypes.TEXT
+  },
+
+  image: {
+    type: DataTypes.TEXT('long'),
   }
 
 }, { sequelize, tableName: 'bikes', timestamps: true, createdAt: false, updatedAt: false });

@@ -1,12 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>static file</title>
+    <title>home</title>
+
+    <!-- GLOBAL STYLE -->
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <!-- DATA FETCHING -->
+    <script src="./client/api.js"></script>
+
+    <!-- COMPONENTS -->
+    <script src="./client/components/shared/header.js"></script>
+    <script src="./client/components/availability/availability-card.js"></script>
+    <script src="./client/components/availability/availability-detail.js"></script>
+    <script src="./client/components/availability/availability-rent.js"></script>
+
+    <!-- PAGE -->
+    <script src="./client/pages/availability.js"></script>
 </head>
+
 <body>
-    <h1>hello from node and express</h1>
+    <jn-header></jn-header><br>
+
+    <!-- PAGE CONTAINER ROOT -->
+    <div id="availability"></div>
+
+    <!-- MODAL TO RENT THE BIKE -->
+    <jn-availability-rent-modal></jn-availability-rent-modal>
+
+    <!-- MODAL TO SHOW THE DETAIL OF THE BIKE -->
+    <jn-availability-detail-modal></jn-availability-detail-modal>
 </body>
+
 </html>

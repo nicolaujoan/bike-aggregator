@@ -1,3 +1,4 @@
+// RENDER PAGE
 document.addEventListener('DOMContentLoaded', async () => {
 
     // DATA 
@@ -28,4 +29,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             container.appendChild(card);
         });
     }
+});
+
+// RENT A BIKE
+document.addEventListener('rent', (event) => {
+    console.log(event);
+    console.log('custom prop:', event.customProp);
+    console.log('a bike has been rented!');
 });

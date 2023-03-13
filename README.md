@@ -152,6 +152,10 @@ A static site is served from /public folder thanks to this snippet located in th
 app.use('/static', express.static(path.join(__dirname, 'public')));
 ```
 
+- hablar de Events, bubbles(escapar hacia arriba en el arbol dom), composed(salir del shadow dom)...
+- hablar de web components, shadow dom, ventajas... 
+- arquitectura de como lo tengo guisado, page, components, data access
+
 ---
 
 ### TODO:

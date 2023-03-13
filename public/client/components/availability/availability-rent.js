@@ -4,7 +4,7 @@ class AvailabilityRent extends HTMLElement {
         this._containerRoot;
         this._data;
         this.isOpen = false;
-        this.attachShadow({ mode: 'open'});
+        this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
           <style>
               #modal-container {
@@ -40,15 +40,13 @@ class AvailabilityRent extends HTMLElement {
                 padding: 1rem;
               }
     
-              ::slotted(*) {
-              }
-    
-              ::slotted(h1){
-                color: red;
-              }
-    
               #main {
                 padding: 1rem;
+              }
+
+              .date-container {
+                display: flex;
+                justify-content: space-around;
               }
     
               #actions {
@@ -69,10 +67,22 @@ class AvailabilityRent extends HTMLElement {
                 <header>
                     <h3>Renting modal</h3>
                 </header>
-                <section id="main">
+                <section id="main" class="date-container">
+                    <div>
+                    <label for="start">Start date:</label>
+                        <input type="date" id="start" name="rent-start"
+                        value="2018-07-22"
+                        min="2018-01-01" max="2018-12-31">
+                    </div>
+                    <div>
+                        <label for="end">End date:</label>
+                        <input type="date" id="end" name="rent-end"
+                        value="2018-07-22"
+                        min="2018-01-01" max="2018-12-31">
+                    </div>
                 </section>
                 <section id="actions">
-                  <button id="confirm-btn">Okay</button>
+                  <button id="confirm-btn">Rent</button>
                   <button id="cancel-btn">Cancel</button>
                 </section>
             </div>
@@ -83,73 +93,74 @@ class AvailabilityRent extends HTMLElement {
         // slots[1].addEventListener('slotchange', event => {
         //   console.dir(slots[1].assignedNodes()[0].textContent);
         // })
-    
-      }
-    
-      connectedCallback() {
+
+    }
+
+    connectedCallback() {
         this._containerRoot = this.shadowRoot.getElementById('modal-container');
         this._registerEventListeners();
-      }
-    
-      _registerEventListeners() {
+    }
+
+    _registerEventListeners() {
         const confirmButton = this.shadowRoot.getElementById('confirm-btn');
         const cancelButton = this.shadowRoot.getElementById('cancel-btn');
         const backdrop = this.shadowRoot.getElementById('backdrop');
-    
+
         // the bind is important to bind the listener to the object that is triggered and not to the button
         cancelButton.addEventListener('click', this._cancel.bind(this));
         confirmButton.addEventListener('click', this._confirm.bind(this));
         backdrop.addEventListener('click', this._cancel.bind(this));
-      }
-    
-      static get observedAttributes() {
+    }
+
+    static get observedAttributes() {
         return ['opened'];
-      }
-    
-      open() {
+    }
+
+    open() {
         this.setAttribute('opened', '');
-      }
-    
-      attributeChangedCallback(name, oldValue, newValue) {
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
         if (this.hasAttribute('opened')) {
-          this.isOpen = true;
-          this._showModal();
+            this.isOpen = true;
+            this._showModal();
         } else {
-          this.isOpen = false;
-          this._hideModal();
+            this.isOpen = false;
+            this._hideModal();
         }
-      }
-    
-      _showModal() {
+    }
+
+    _showModal() {
         this._containerRoot.style.opacity = 1;
         this._containerRoot.style.pointerEvents = 'all';
-      }
-    
-      _hideModal() {
+    }
+
+    _hideModal() {
         this._containerRoot.style.opacity = 0;
         this._containerRoot.style.pointerEvents = 'none';
-      }
-    
-      hide() {
+    }
+
+    hide() {
         if (this.hasAttribute('opened')) {
-          this.removeAttribute('opened');
+            this.removeAttribute('opened');
         }
-      }
-    
-      _cancel(event) {
+    }
+
+    _cancel(event) {
         this.hide();
         // Dispatched from shadowDOM, bubbled(can be listened from another nodes) and composed(escape shadow DOM)
         // so another component can listen for it and do something with it
         const cancelEvent = new Event('cancel', { bubbles: true, composed: true });
         event.target.dispatchEvent(cancelEvent);
-      }
-    
-      _confirm(event) {
+    }
+
+    _confirm(event) {
         this.hide();
-        // dispatched from the modal itself, so is not considered shadow DOM, can not escape it
-        const confirmEvent = new Event('confirm');
-        this.dispatchEvent(confirmEvent);
-      }
+        // dispatched from the modal itself (with 'this'), so is not considered shadow DOM, can not escape it
+        const rentEvent = new Event('rent', { bubbles: true, composed: true });
+        rentEvent.customProp = 'hola que ase';
+        event.target.dispatchEvent(rentEvent);
+    }
 }
 
 customElements.define('jn-availability-rent-modal', AvailabilityRent);

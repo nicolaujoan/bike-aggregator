@@ -1,9 +1,7 @@
-class AvailabilityRent extends HTMLElement {
+class AvailabilityRent extends Modal {
     constructor() {
         super();
-        this._containerRoot;
         this._data;
-        this.isOpen = false;
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
           <style>
@@ -88,62 +86,22 @@ class AvailabilityRent extends HTMLElement {
             </div>
           </div>
         `
-        // This snippet accesses the second slot text!, can have slot access from inside the component
-        // const slots = this.shadowRoot.querySelectorAll('slot');
-        // slots[1].addEventListener('slotchange', event => {
-        //   console.dir(slots[1].assignedNodes()[0].textContent);
-        // })
 
-    }
+        // REGISTER EVENT LISTENERS
+        const listeners = [
+            {
+                id: 'confirm-btn',
+                type: 'click',
+                handler: this._confirm
+            },
+            {
+                id: 'cancel-btn',
+                type: 'click',
+                handler: this._cancel
+            }
+        ];
 
-    connectedCallback() {
-        this._containerRoot = this.shadowRoot.getElementById('modal-container');
-        this._registerEventListeners();
-    }
-
-    _registerEventListeners() {
-        const confirmButton = this.shadowRoot.getElementById('confirm-btn');
-        const cancelButton = this.shadowRoot.getElementById('cancel-btn');
-        const backdrop = this.shadowRoot.getElementById('backdrop');
-
-        // the bind is important to bind the listener to the object that is triggered and not to the button
-        cancelButton.addEventListener('click', this._cancel.bind(this));
-        confirmButton.addEventListener('click', this._confirm.bind(this));
-        backdrop.addEventListener('click', this._cancel.bind(this));
-    }
-
-    static get observedAttributes() {
-        return ['opened'];
-    }
-
-    open() {
-        this.setAttribute('opened', '');
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        if (this.hasAttribute('opened')) {
-            this.isOpen = true;
-            this._showModal();
-        } else {
-            this.isOpen = false;
-            this._hideModal();
-        }
-    }
-
-    _showModal() {
-        this._containerRoot.style.opacity = 1;
-        this._containerRoot.style.pointerEvents = 'all';
-    }
-
-    _hideModal() {
-        this._containerRoot.style.opacity = 0;
-        this._containerRoot.style.pointerEvents = 'none';
-    }
-
-    hide() {
-        if (this.hasAttribute('opened')) {
-            this.removeAttribute('opened');
-        }
+        super._registerEventListeners(listeners);
     }
 
     _cancel(event) {

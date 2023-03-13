@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
+// ================ DOMAIN EVENTS ======================================================================
+
 // RENT A BIKE
 document.addEventListener('rent', (event) => {
     console.log(event);

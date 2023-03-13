@@ -155,6 +155,8 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 - hablar de Events, bubbles(escapar hacia arriba en el arbol dom), composed(salir del shadow dom)...
 - hablar de web components, shadow dom, ventajas... 
 - arquitectura de como lo tengo guisado, page, components, data access
+- https://medium.com/@bdc/web-components-the-react-way-8ed5b6f4f942
+- pensar como hago para el id de la card, maybe combino los ids de bici i tienda puede ir guay
 
 ---
 

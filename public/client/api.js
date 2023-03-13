@@ -9,6 +9,8 @@ const api = (function () {
     }
 
     // BIKES
+    
+
     // SHOPS
 
     return {

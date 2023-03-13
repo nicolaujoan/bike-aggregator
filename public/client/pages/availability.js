@@ -1,3 +1,7 @@
+function cantorPairing(a, b) {
+    return 0.5 * (a + b) * (a + b + 1) + b;
+}
+
 // RENDER PAGE
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -24,8 +28,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     function presentData() {
         availability.forEach((av, index) => {
             const card = document.createElement('jn-availability-card');  // custom web component
-            card.setAttribute('id', `card-${index}`);
-            card._availability = av; 
+            card.setAttribute('id', `card-${cantorPairing(av.bike.id, av.shop.id)}`);
+            card._availability = av;
             container.appendChild(card);
         });
     }
@@ -35,7 +39,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // RENT A BIKE
 document.addEventListener('rent', (event) => {
-    console.log(event);
-    console.log('custom prop:', event.customProp);
-    console.log('a bike has been rented!');
+    const availability = event.availability;
+    const cardId = `card-${cantorPairing(availability.bike.id, availability.shop.id)}`;
+    downGradeStock(cardId);
+    
+    function downGradeStock(id) {
+        const card = document.getElementById(id);
+        card.downGradeStock();
+    }
 });

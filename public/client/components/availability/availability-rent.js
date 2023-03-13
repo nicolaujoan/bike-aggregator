@@ -1,7 +1,7 @@
 class AvailabilityRent extends Modal {
     constructor() {
         super();
-        this._data;
+        this._availability;
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.innerHTML = `
           <style>
@@ -104,6 +104,10 @@ class AvailabilityRent extends Modal {
         super._registerEventListeners(listeners);
     }
 
+    setAvailability(availability) {
+        this._availability = availability;
+    }
+
     _cancel(event) {
         this.hide();
         // Dispatched from shadowDOM, bubbled(can be listened from another nodes) and composed(escape shadow DOM)
@@ -116,7 +120,7 @@ class AvailabilityRent extends Modal {
         this.hide();
         // dispatched from the modal itself (with 'this'), so is not considered shadow DOM, can not escape it
         const rentEvent = new Event('rent', { bubbles: true, composed: true });
-        rentEvent.customProp = 'hola que ase';
+        rentEvent.availability = this._availability;
         event.target.dispatchEvent(rentEvent);
     }
 }

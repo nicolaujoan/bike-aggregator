@@ -45,7 +45,7 @@ class AvailabilityCard extends HTMLElement {
         </style>
             <div class="card">
                 <img src="" alt="bike x" style="width:100%; height: 224px">
-                <h5 id="bike"></h1>
+                <h5 id="bike"></h5>
                 <p id="price" class="price"></p>
                 <p id="stock"></p>
                 <p>
@@ -71,7 +71,7 @@ class AvailabilityCard extends HTMLElement {
         this.shadowRoot.getElementById('price').textContent = `${this._availability.bike.msrp}`;
         this.shadowRoot.getElementById('stock').textContent = `${this._availability.in_stock} in stock`;
 
-        // REGISTER BUTTONS
+        // INIT BUTTONS
         this._rentButton = this.shadowRoot.querySelector('#rent');
         this._detailButton = this.shadowRoot.querySelector('#detail');
     }
@@ -84,6 +84,7 @@ class AvailabilityCard extends HTMLElement {
     // DISPATCH RENT BUTTON
     _rent() {
         this._rentingModal.open();
+        this._rentingModal.setAvailability(this._availability);
     }
 
     // DISPATCH DETAIL BUTTON   
@@ -91,6 +92,10 @@ class AvailabilityCard extends HTMLElement {
         this._detailModal.open();
     }
 
+    downGradeStock() {
+        // web components the react way...fun jejej
+        console.log('downgrading stock...');
+    }
 }
 
 customElements.define('jn-availability-card', AvailabilityCard);

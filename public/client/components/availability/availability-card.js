@@ -103,6 +103,7 @@ class AvailabilityCard extends HTMLElement {
 
     // DISPATCH DETAIL BUTTON   
     _detail() {
+        this._detailModal.init(this._availability);
         this._detailModal.open();
     }
 

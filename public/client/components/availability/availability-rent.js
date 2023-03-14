@@ -63,7 +63,7 @@ class AvailabilityRent extends Modal {
             <div id="backdrop"></div>
             <div id="modal">
                 <header>
-                    <h3>Renting modal</h3>
+                    <h3>Renting</h3>
                 </header>
                 <section id="main" class="date-container">
                     <div>
@@ -98,7 +98,12 @@ class AvailabilityRent extends Modal {
                 id: 'cancel-btn',
                 type: 'click',
                 handler: this._cancel
-            }
+            },
+            {
+              id: 'backdrop',
+              type: 'click',
+              handler: this._cancel
+          }
         ];
 
         super._registerEventListeners(listeners);

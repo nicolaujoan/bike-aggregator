@@ -26,9 +26,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // PRESENTATION
     function presentData() {
-        availability.forEach((av, index) => {
+        availability.forEach((av) => {
             const card = document.createElement('jn-availability-card');  // custom web component
             card.setAttribute('id', `card-${cantorPairing(av.bike.id, av.shop.id)}`);
+            card.setAttribute('stock', av.in_stock);
             card._availability = av;
             container.appendChild(card);
         });

@@ -69,7 +69,7 @@ class AvailabilityCard extends HTMLElement {
         this.shadowRoot.querySelector('img').src = this._availability.bike.image;
         this.shadowRoot.getElementById('bike').textContent = `${this._availability.bike.brand} ${this._availability.bike.model}`;
         this.shadowRoot.getElementById('price').textContent = `${this._availability.bike.msrp}`;
-        this.shadowRoot.getElementById('stock').textContent = `${this._availability.in_stock} in stock`;
+        this.shadowRoot.getElementById('stock').textContent = `${this.getAttribute('stock')} in stock`;
 
         // INIT BUTTONS
         this._rentButton = this.shadowRoot.querySelector('#rent');
@@ -79,6 +79,16 @@ class AvailabilityCard extends HTMLElement {
     _registerListeners() {
         this._rentButton.addEventListener('click', this._rent.bind(this));
         this._detailButton.addEventListener('click', this._detail.bind(this));
+    }
+
+    static get observedAttributes() {
+        return ['stock'];
+      }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'stock') {
+            this.shadowRoot.getElementById('stock').textContent = `${newValue} in stock`;
+        }
     }
 
     // DISPATCH RENT BUTTON
@@ -93,8 +103,10 @@ class AvailabilityCard extends HTMLElement {
     }
 
     downGradeStock() {
-        // web components the react way...fun jejej
-        console.log('downgrading stock...');
+        const stock = 'stock';
+        if (this.hasAttribute(stock)) {
+            this.setAttribute(stock, String(parseInt(this.getAttribute(stock)) - 1));
+        }
     }
 }
 

@@ -54,9 +54,9 @@ class AvailabilityCard extends HTMLElement {
                 </p>
             </div>
         `;
-        
+
         this._rentingModal = document.querySelector('jn-availability-rent-modal');
-        this._detailModal = document.querySelector('jn-availability-detail-modal'); 
+        this._detailModal = document.querySelector('jn-availability-detail-modal');
     }
 
     connectedCallback() {
@@ -83,11 +83,15 @@ class AvailabilityCard extends HTMLElement {
 
     static get observedAttributes() {
         return ['stock'];
-      }
+    }
 
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'stock') {
-            this.shadowRoot.getElementById('stock').textContent = `${newValue} in stock`;
+            if (newValue === '0') {
+                this.remove();
+            } else {
+                this.shadowRoot.getElementById('stock').textContent = `${newValue} in stock`;
+            }
         }
     }
 

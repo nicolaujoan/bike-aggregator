@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "local": "NODE_ENV=local node ./bin/www",
     "start": "NODE_ENV=production node ./bin/www",
     "dev": "NODE_ENV=test nodemon ./bin/www",
     "test-init": "NODE_ENV=test node ./bin/www",

@@ -13,6 +13,11 @@ exports.getAllCategories = function (attributes, filters) {
     return categories;
 }
 
+exports.updateCategory = function (id, data) {
+    const updatedRows = categoryRepository.update(id, data);
+    return updatedRows;
+}
+
 exports.getCategoryById = function (id) {
     const category = categoryRepository.findOneById(id);
     return category;

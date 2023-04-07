@@ -9,6 +9,8 @@ router.get('/', categoryController.getList);
 
 router.get('/:id', categoryController.getOne);
 
+router.put('/:id', categoryController.update);
+
 router.get('/subcategories', categoryController.getAllSubcategories);
 
 router.get('/parent-categories', categoryController.getAllParentCategories);

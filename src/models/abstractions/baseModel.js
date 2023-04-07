@@ -30,6 +30,15 @@ class BaseModel extends Model {
         }
     }
 
+    static async _update(id, updatedEntity) {
+        try {
+            const updatedRows = await this.update(updatedEntity, { where: { id } });
+            return updatedRows;
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
     static async _findOne(attributes, filters) {
         const entity = await this.findOne({ attributes, where: filters });
         return entity ? entity.dataValues : null;

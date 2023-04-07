@@ -3,10 +3,11 @@ var router = express.Router();
 
 const categoryController = require('../controllers/categoryController');
 
+// let's transform the routes in order to be standarized for react admin
 
-router.get('/', categoryController.getAllCategories);
+router.get('/', categoryController.getList);
 
-router.get('/category/:id', categoryController.getCategoryById);
+router.get('/:id', categoryController.getOne);
 
 router.get('/subcategories', categoryController.getAllSubcategories);
 

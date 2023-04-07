@@ -6,6 +6,10 @@ CategoryRepository.prototype.findAll = function (attributes, filters) {
     return this.model._findAll(attributes, filters);
 }
 
+CategoryRepository.prototype.findAndCountAll = function (filter, range, sort) {
+    return this.model._findAndCountAll(filter, range, sort);
+}
+
 CategoryRepository.prototype.findOneById = function (id) {
     return this.model.findOneById(id);
 }

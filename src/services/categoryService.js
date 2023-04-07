@@ -3,6 +3,11 @@ const Category = require('../models/category');
 
 const categoryRepository = new CategoryRepository(Category);
 
+exports.getAllCategoriesAndCount = function (filter, range, sort) {
+    const data = categoryRepository.findAndCountAll(filter, range, sort);
+    return data;
+}
+
 exports.getAllCategories = function (attributes, filters) {
     const categories = categoryRepository.findAll(attributes, filters);
     return categories;

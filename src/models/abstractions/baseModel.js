@@ -2,12 +2,32 @@ const { Model } = require("sequelize");
 
 class BaseModel extends Model {
 
-    static async _findAll(attributes, filters) {
-        const entities = await this.findAll({ attributes, where: filters });
-        if (entities) {
-            return entities.map(entity => entity.dataValues);
+    static async _findAndCountAll(filter, range, sort) {
+        console.log('sorting: ', sort);
+        try {
+            const data = await this.findAndCountAll({
+                where: filter,
+                offset: range[0],
+                limit: range[1],
+                order: [sort],
+
+            });
+            return data;
+        } catch (e) {
+            console.log(e.message);
         }
-        return [];
+    }
+
+    static async _findAll(attributes, filters) {
+        try {
+            const entities = await this.findAll({ attributes, where: filters, });
+            if (entities) {
+                return entities.map(entity => entity.dataValues);
+            }
+            return [];
+        } catch (e) {
+            console.log(e.message);
+        }
     }
 
     static async _findOne(attributes, filters) {

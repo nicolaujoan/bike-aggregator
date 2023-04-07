@@ -7,8 +7,6 @@
 var app = require('../app');
 var debug = require('debug')('bike-aggregator:server');
 var http = require('http');
-var cors = require('cors');
-app.use(cors());
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` });
 var db = require('../config/db/sequelize');
 
@@ -88,11 +86,9 @@ function onError(error) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
       process.exit(1);
-      break;
     default:
       throw error;
   }

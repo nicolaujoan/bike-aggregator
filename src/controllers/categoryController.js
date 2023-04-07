@@ -1,16 +1,20 @@
-const { getAllCategories, getCategoryById, getAllParentCategories, getAllSubcategories, addCategories, addCategory } = require('../services/categoryService');
+const { getAllCategories, getCategoryById, getAllParentCategories, getAllSubcategories, addCategories, addCategory, getAllCategoriesAndCount } = require('../services/categoryService');
 
-exports.getAllCategories = async function (req, res) {
-    const { attributes, ...filters } = req.query;
-    const shops = await getAllCategories(attributes, filters);
-    return res.send(shops);
+exports.getList = async function (req, res) {
+    const [filter, range, sort] = Object.values(req.query).map(val => { val = JSON.parse(val); return val; });
+    const categories = await getAllCategoriesAndCount(filter, range, sort);
+    
+    // pd estos headers son necesarios para que no se queje el simple-rest
+    res.set('Access-Control-Expose-Headers', 'Content-Range');
+    res.set('Content-Range', `categories 0-${range[1]}/${categories.count}`);
+    return res.send(categories.rows);
 }
 
-exports.getCategoryById = async function (req, res) {
+exports.getOne = async function (req, res) {
     const id = req.params.id;
-    const shop = await getCategoryById(id);
-    if (shop) {
-        return res.send(shop);
+    const category = await getCategoryById(id);
+    if (category) {
+        return res.send(category);
     }
     return res.status(404).send("SHOP NOT FOUND");
 }

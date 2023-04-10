@@ -4,7 +4,6 @@ const { getAllCategories, getCategoryById, getAllParentCategories, getAllSubcate
 exports.getList = async function (req, res) {
     const [filter, range, sort] = Object.values(req.query).map(val => { val = JSON.parse(val); return val; });
     const categories = await getAllCategoriesAndCount(filter, range, sort);
-
     // pd estos headers son necesarios para que no se queje el data provider
     res.set('Access-Control-Expose-Headers', 'Content-Range');
     res.set('Content-Range', `categories 0-${range[1]}/${categories.count}`);
@@ -18,7 +17,7 @@ exports.getOne = async function (req, res) {
     if (category) {
         return res.send(category);
     }
-    return res.status(404).send("SHOP NOT FOUND");
+    return res.status(404).send("CATEGORY NOT FOUND");
 }
 
 // works fine with ra

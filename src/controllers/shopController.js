@@ -4,7 +4,7 @@ exports.getList = async function (req, res) {
     const [filter, range, sort] = Object.values(req.query).map(val => { val = JSON.parse(val); return val; });
     const shops = await getAllShopsAndCount(filter, range, sort);
     res.set('Access-Control-Expose-Headers', 'Content-Range');
-    res.set('Content-Range', `categories 0-${range[1]}/${shops.count}`);
+    res.set('Content-Range', `shops 0-${range[1]}/${shops.count}`);
     return res.send(shops.rows);
 }
 

@@ -18,6 +18,11 @@ exports.updateCategory = function (id, data) {
     return updatedRows;
 }
 
+exports.deleteCategory = function (id) {
+    const deletedId = categoryRepository.delete(id);
+    return deletedId;
+}
+
 exports.getCategoryById = function (id) {
     const category = categoryRepository.findOneById(id);
     return category;

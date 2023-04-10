@@ -11,6 +11,8 @@ router.get('/:id', categoryController.getOne);
 
 router.put('/:id', categoryController.update);
 
+router.delete('/:id', categoryController.delete);
+
 router.get('/subcategories', categoryController.getAllSubcategories);
 
 router.get('/parent-categories', categoryController.getAllParentCategories);

@@ -1,11 +1,11 @@
-const { getAllCategories, getCategoryById, getAllParentCategories, getAllSubcategories, addCategories, addCategory, getAllCategoriesAndCount, updateCategory } = require('../services/categoryService');
+const { getAllCategories, getCategoryById, getAllParentCategories, getAllSubcategories, addCategories, addCategory, getAllCategoriesAndCount, updateCategory, deleteCategory } = require('../services/categoryService');
 
 // works fine with ra
 exports.getList = async function (req, res) {
     const [filter, range, sort] = Object.values(req.query).map(val => { val = JSON.parse(val); return val; });
     const categories = await getAllCategoriesAndCount(filter, range, sort);
 
-    // pd estos headers son necesarios para que no se queje el simple-rest
+    // pd estos headers son necesarios para que no se queje el data provider
     res.set('Access-Control-Expose-Headers', 'Content-Range');
     res.set('Content-Range', `categories 0-${range[1]}/${categories.count}`);
     return res.send(categories.rows);
@@ -27,6 +27,12 @@ exports.update = async function (req, res) {
     const data = req.body;
     const updatedRows = await updateCategory(id, data);
     return res.status(200).send(data);
+}
+
+exports.delete = async function (req, res) {
+    const id = req.params.id;
+    const deletedId = await deleteCategory(id);
+    return res.status(200).send({ deletedId });
 }
 
 exports.getAllParentCategories = async function (req, res) {

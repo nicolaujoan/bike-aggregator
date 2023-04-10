@@ -14,6 +14,10 @@ CategoryRepository.prototype.update = function (id, updatedCategory) {
     return this.model._update(id, updatedCategory);
 }
 
+CategoryRepository.prototype.delete = function (id) {
+    return this.model._delete({ id });
+}
+
 CategoryRepository.prototype.findOneById = function (id) {
     return this.model.findOneById(id);
 }

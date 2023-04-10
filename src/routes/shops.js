@@ -3,7 +3,13 @@ var router = express.Router();
 
 const shopsController = require('../controllers/shopController');
 
-router.get('/', shopsController.getAllShops);
+router.get('/', shopsController.getList);
+
+router.get('/:id', shopsController.getOne);
+
+router.put('/:id', shopsController.update);
+
+router.delete('/:id', shopsController.delete);
 
 router.get('/shop/', shopsController.getSingleShop);
 

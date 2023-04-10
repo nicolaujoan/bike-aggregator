@@ -6,6 +6,10 @@ ShopRepository.prototype.findAll = function (attributes, filters) {
     return this.model._findAll(attributes, filters);
 }
 
+ShopRepository.prototype.findAndCountAll = function (filter, range, sort) {
+    return this.model._findAndCountAll(filter, range, sort);
+}
+
 ShopRepository.prototype.findOne = function (attributes, filters) {
     return this.model._findOne(attributes, filters);
 }
@@ -16,6 +20,10 @@ ShopRepository.prototype.addOne = function (shop) {
 
 ShopRepository.prototype.addMany = function (shops) {
     return this.model.addMany(shops);
+}
+
+ShopRepository.prototype.update = function (id, updatedShop) {
+    return this.model._update(id, updatedShop);
 }
 
 ShopRepository.prototype.delete = function (filters) {

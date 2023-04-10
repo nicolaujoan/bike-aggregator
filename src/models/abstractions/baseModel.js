@@ -3,7 +3,6 @@ const { Model } = require("sequelize");
 class BaseModel extends Model {
 
     static async _findAndCountAll(filter, range, sort) {
-        console.log('sorting: ', sort);
         try {
             const data = await this.findAndCountAll({
                 where: filter,

@@ -4,9 +4,13 @@ var router = express.Router();
 const bikeController = require('../controllers/bikeController');
 
 // READ
-router.get('/', bikeController.getAllBikes);
+router.get('/', bikeController.getList);
 
-router.get('/bike', bikeController.getSingleBike);
+router.get('/:id', bikeController.getOne);
+
+router.put('/:id', bikeController.update);
+
+router.delete('/:id', bikeController.delete);
 
 // CREATE
 router.post('/add-bike', bikeController.addBike);

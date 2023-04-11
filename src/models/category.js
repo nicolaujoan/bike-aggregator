@@ -79,10 +79,4 @@ Category.init({
 
 }, { sequelize, tableName: 'categories', timestamps: true, createdAt: false, updatedAt: false, paranoid: true });
 
-// this will alter the table if necessary, done for paranoid
-(async () => {
-    await Category.sync({alter: true});
-    console.log('the table for the Category model was altered');
-})()
-
 module.exports = Category;
